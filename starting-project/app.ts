@@ -1,9 +1,21 @@
 function add(n1: number, n2: number) {
-  return n1 + n2
+	return n1 + n2;
 }
 
-const number1 = 54
-const number2 = 5
-const result = add(number1, number2)
+function printResult(num: number) {
+	console.log('Result ', num);
+}
 
-console.log(result)
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+	const result = add(n1, n2);
+	cb(result);
+}
+
+let combineValues: (param1: number, param2: number) => number;
+
+combineValues = add;
+
+console.log(combineValues(2, 5));
+
+const combineValues2 = addAndHandle;
+combineValues2(4, 6, printResult);
